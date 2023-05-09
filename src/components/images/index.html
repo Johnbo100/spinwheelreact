@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Spin Game</title>
+    <meta charset="UTF-8" />
+    <link rel="stylesheet" type="text/css" href="styles.css" />
+<script src="https://code.jquery.com/jquery-1.11.3.js"></script>
+  </head>
+
+  <body>
+    <div id="app">
+      <img class="marker" src="marker.png" />
+      <img class="wheel" id="wheelImage" src="1to6.png" />
+      <img class="button" src="button.png" />
+	<div>Adjust time<button>Increase</button><button>Decrease</button></div>
+	
+<div id="panel">
+  <label >Choose a wheel:</label>
+<select id="imageSelect">
+  <option value="1to6.png">1 to 6</option>
+  <option value="wheel.png">wheel</option>
+  <option value="shapes.png">Shapes</option>
+  <option value="colors3.png">Colors</option>
+  <option value="1to25.png">1 to 25</option>
+  <option value="roulette.png">Roulette</option>
+</select>
+
+</div>
+    
+</div>
+
+<script src="script.js"></script>
+<script>
+$(document).ready(function() {
+    $("#imageSelect").change(function() {
+        var src = $(this).val();
+console.log(src);
+        $("#wheelImage").attr('src',src);
+    });
+
+});
+
+</script>
+  </body>
+</html>

@@ -1,0 +1,9 @@
+Make a pop up window showing all images to choose from
+Make a team scoreboard to post to school db
+Retrieve old scores
+Get more images
+Set image height and calculate the width according to the height to keep square
+Add sound effects
+Maybe put a character in to push the wheel
+See if useRef should be used
+slow the wheel down towards the end
