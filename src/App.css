@@ -1,0 +1,101 @@
+.App {
+  text-align: center;
+}
+.container{
+  justify-content: center;
+    display: flex;
+
+}
+.controls{
+  margin-top: 30px;
+    display: flex;
+    flex-direction: column;
+    padding: 30px;
+    width: 30vw;
+    border-style: double;
+    margin-left: 40px;
+    border-color: #f1592b;
+    border-radius: 30px;
+    border-width: 10px;
+    justify-content: space-between;
+}
+.controls button{
+  height: 100px;
+    width: 100%;
+    padding: 20px;
+    /* margin: 20px; */
+    border-radius: 40px;
+}
+select{
+  font-size: 20px;
+    /* margin: 10px; */
+    width: 100%;
+}
+input{
+  padding-top: 25px;
+  padding-bottom: 25px;
+  /* margin: 10px; */
+  font-size: 20px;
+    width: 100%;
+}
+.spin {
+  animation: spin 2s linear infinite;
+}
+.startbtn{
+  background-color: chartreuse;
+}
+.stopbtn{
+  background-color: crimson;
+}
+.ticker {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translate(-50%, -50%) rotate(45deg); /* rotate the square 45 degrees */
+  width: 0;
+  height: 0;
+  border-width: 10px;
+  border-style: solid;
+  border-color: transparent transparent #000000f7 transparent; /* set the bottom border color to black */
+  border-top-color: transparent; /* set top border to transparent */
+  border-left-color: transparent; /* set left border to transparent */
+  border-right-color: transparent; /* set right border to transparent */
+  animation: tickerflash 0.2s linear infinite;
+}
+.static-ticker{
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translate(-50%, -50%) rotate(45deg); /* rotate the square 45 degrees */
+  width: 0;
+  height: 0;
+  border-width: 10px;
+  border-style: solid;
+  border-color: transparent transparent #000000f7 transparent; /* set the bottom border color to black */
+  border-top-color: transparent; /* set top border to transparent */
+  border-left-color: transparent; /* set left border to transparent */
+  border-right-color: transparent; /* set right border to transparent */
+}
+.wheel-image{
+  margin-top: 20px;
+  width: 50vw;
+  height :(50vw * height) / width
+
+}
+@keyframes tickerflash {
+  20% {
+    border-color: brown;
+    transform: translate(-50%, -20%);
+  }
+  80% {
+    border-color: blue;
+  }
+}
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
