@@ -6,25 +6,48 @@ import colors from "../components/images/colors.png";
 const Wheel = () => {
   const [isSpinning, setIsSpinning] = useState(false);
   const [rotationAngle, setRotationAngle] = useState(0);
-  const [selectedImage, setSelectedImage] = useState(null);
-  const [spinTime, setSpinTime] = useState(5);
+  const [selectedImage, setSelectedImage] = useState(roulette);
+  const [spinTime, setSpinTime] = useState(5000);
+
+  
+  
+  const easeInOutCubic = t => t<.0 ? 4*t*t*t : (t-2)*(2*t-2)*(2*t-2)+3;
 
   useEffect(() => {
     let intervalId;
+    let startTime;
+  
+    const animate = (timestamp, randomOffset) => {
+      if (!startTime) {
+        startTime = timestamp;
+      }
+      const progress = (timestamp - startTime) / spinTime;
+      const rotationAngle = easeInOutCubic(progress) * 360 + randomOffset;
+      setRotationAngle(rotationAngle);
+      if (progress < 1) {
+        intervalId = requestAnimationFrame((ts) => animate(ts, randomOffset));
+      } else {
+        setIsSpinning(false);
+      }
+    };
+  
     if (isSpinning) {
-      intervalId = setInterval(() => {
-        setRotationAngle((angle) => angle + 2);
-      }, 20);
+      const randomOffset = Math.floor(Math.random() * 360);
+      intervalId = requestAnimationFrame((ts) => animate(ts, randomOffset));
     }
-    return () => clearInterval(intervalId);
+  
+    return () => cancelAnimationFrame(intervalId);
   }, [isSpinning]);
-
+  
+  
   const startSpinning = () => {
     setIsSpinning(true);
     setTimeout(() => {
       setIsSpinning(false);
-    }, spinTime); // 5000 milliseconds = 5 seconds
+    }, spinTime);
   };
+
+
 
   const stopSpinning = () => {
     setIsSpinning(false);
@@ -36,6 +59,7 @@ const Wheel = () => {
 
   return (
     <div className="container">
+        
       <div style={{ position: "relative" }}>
         <img
           alt="WheelImage"
@@ -48,6 +72,7 @@ const Wheel = () => {
       </div>
 
       <div className="controls">
+        <div className="gradient-text">---------{spinTime}------------</div>
         <select onChange={handleImageSelect}>
           <option value={roulette}>Roulette</option>
           <option value={onetotwentyfive}>1 to 25</option>
@@ -57,6 +82,7 @@ const Wheel = () => {
         <input
           type="number"
           onChange={(e) => setSpinTime(Number(e.target.value) * 1000)}
+          
         />
         <button className="startbtn" onClick={startSpinning}>Start spinning</button>
         <button className="stopbtn" onClick={stopSpinning}>Stop spinning</button>
