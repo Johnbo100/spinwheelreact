@@ -2,12 +2,15 @@ import React, { useState, useEffect } from "react";
 import roulette from "../components/images/roulette.png";
 import onetotwentyfive from "../components/images/1to25.png";
 import colors from "../components/images/colors.png";
+import wheel2 from "../components/images/wheel2.png"
+import spin10to100 from "../components/images/spin10-100.png"
+import twister from "../components/images/twister.png"
 
 const Wheel = () => {
   const [isSpinning, setIsSpinning] = useState(false);
   const [rotationAngle, setRotationAngle] = useState(0);
   const [selectedImage, setSelectedImage] = useState(roulette);
-  const [spinTime, setSpinTime] = useState(5000);
+  const [spinTime, setSpinTime] = useState(9000);
 
   
   
@@ -66,27 +69,23 @@ const Wheel = () => {
           src={selectedImage}
           className="wheel-image"
           style={{ transform: `rotate(${rotationAngle}deg)` }}
+          onClick={startSpinning}
         />
         {isSpinning && <div className="ticker"></div>}
         {!isSpinning && <div className="static-ticker"> </div>}
-      </div>
-
-      <div className="controls">
-        <div className="gradient-text">---------{spinTime}------------</div>
+        <div className="selectwheel">
         <select onChange={handleImageSelect}>
           <option value={roulette}>Roulette</option>
           <option value={onetotwentyfive}>1 to 25</option>
           <option value={colors}>Colors</option>
+          <option value={wheel2}>Wheel2</option>
+          <option value={spin10to100}>10-100</option>
+          <option value={twister}>Twister</option>
         </select>
-
-        <input
-          type="number"
-          onChange={(e) => setSpinTime(Number(e.target.value) * 1000)}
-          
-        />
-        <button className="startbtn" onClick={startSpinning}>Start spinning</button>
-        <button className="stopbtn" onClick={stopSpinning}>Stop spinning</button>
+        </div>
       </div>
+
+      
       
     </div>
   );
